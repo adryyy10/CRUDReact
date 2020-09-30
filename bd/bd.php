@@ -24,7 +24,7 @@ function metodoGet($query){
     try {
         conectar();
         $statement = $GLOBALS['pdo']->prepare($query);
-        $statement = setFetchMode(PDO::FETCH_ASSOC);
+        $statement->setFetchMode(PDO::FETCH_ASSOC);
         $statement->execute();
         desconectar();
         return $statement;
