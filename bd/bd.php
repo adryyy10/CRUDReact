@@ -4,14 +4,14 @@ $pdo = null;
 $host = "localhost";
 $user = "root";
 $password = "";
-$bd = "tutoriales":
+$bd = "tutoriales";
 
 function conectar(){
     try {
         $GLOBALS['pdo'] = new PDO("mysql: host=". $GLOBALS['host'].";dbname=". $GLOBALS['bd']."", $GLOBALS['user'], $GLOBALS['password']);
         $GLOBALS['pdo']->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOEXCEPTION $e) {
-        print "Error!: No se pudo contectar a la bd ".$bd."<br/>";
+        print "Error!: No se pudo contectar a la bd ". $bd ."<br/>";
         print "\nError!: ".$e."<br/>";
         die();
     }
@@ -38,7 +38,7 @@ function metodoPost($query, $queryAutoIncrement){
         conectar();
         $statement = $GLOBALS['pdo']->prepare($query);
         $statement->execute();
-        $idAutoIncrement= metodoGet($queryAutoIncrement)->fetch(PDO::FECTH_ASSOC);
+        $idAutoIncrement= metodoGet($queryAutoIncrement)->fetch(PDO::FETCH_ASSOC);
         $result = array_merge($idAutoIncrement, $_POST);
         $statement->closeCursor();
         desconectar();

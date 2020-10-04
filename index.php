@@ -1,16 +1,16 @@
 <?php
 
-  include 'bd/bd.php';  
+  include 'bd/BD.php';  
 
   header('Acces-Control-Allow-Origin');
 
   if($_SERVER["REQUEST_METHOD"] == "GET"){
     if(isset($_GET['id'])){
-        $query = "SELECT * FROM framweorks where id=".$_GET['id'];
+        $query = "SELECT * FROM frameworks where id=".$_GET['id'];
         $resultado = metodoGet($query);
         echo json_encode($resultado->fecth(PDO::FETCH_ASSOC));
     }else{
-        $query = "SELECT * FROM framweorks";
+        $query = "SELECT * FROM frameworks";
         $resultado = metodoGet($query);
         echo json_encode($resultado->fetchAll());
     }
@@ -41,6 +41,7 @@
     echo json_encode($resultado);
     header("HTTP/1.1 200 OK");
     exit();
+  }
 
     if($_SERVER["METHOD"] == "DELETE"){
         unset($_POST["METHOD"]);
@@ -50,7 +51,7 @@
         echo json_encode($resultado);
         header("HTTP/1.1 200 OK");
         exit();
-}
+    }
 
 header("HTTP/1.1 400 Bad Request");
 
